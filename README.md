@@ -20,7 +20,7 @@ A simple accounting application built with React and Vite.
 1.  **Clone the repository:**
 
     ```bash
-    git clone [<your_repository_url>](https://github.com/nstksean/accounting.git)
+    git clone https://github.com/nstksean/accounting.git
 
     ```
 
