@@ -1,4 +1,4 @@
-import { TransactionsProvider, useTransactions } from "../context/TransactionsContext";
+import { useTransactions } from "../context/TransactionsContext";
 import React, { useState } from "react";
 
 
