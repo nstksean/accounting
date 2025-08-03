@@ -1,7 +1,46 @@
+import { TransactionsProvider, useTransactions } from "../context/TransactionsContext";
+import React, { useState } from "react";
+
+
 export default function AddRecordCard({ onCancel }) {
+  const { addTransaction } = useTransactions();
+  const [day, setDay] = useState(1);
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState(0);
+
+  const resetCard = () => {
+    setDay(1);
+    setName("");
+    setAmount(0);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTransaction(name, amount, day);
+    resetCard();
+    onCancel();
+  }
+
+  const handleDayChange = (e) => {
+    const newDay = parseInt(e.target.value, 10);
+    if (newDay >= 1 && newDay <= 31) {
+      setDay(newDay);
+    } else {
+      alert("請輸入有效的日期（1-31）");
+    }
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleAmountChange = (e) => {
+    setAmount(parseFloat(e.target.value));
+  };
+
   return (
     <div className="h-1/2 flex flex-col p-4 bg-cardGray shadow-sm">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <div className="flex items-center">
             <span className="block rounded-md  p-2 text-white text-2xl font-bold">
@@ -13,11 +52,12 @@ export default function AddRecordCard({ onCancel }) {
             <input
               type="number"
               id="day"
-              value={1}
+              value={day}
               min="1"
               max="31"
               className="block w-20 border-b border-white p-2 text-white text-2xl font-bold"
               placeholder="DD"
+              onChange={handleDayChange}
             />
           </div>
         </div>
@@ -30,6 +70,8 @@ export default function AddRecordCard({ onCancel }) {
             id="name"
             className="mt-1 block w-full border-b border-gray-300 p-2"
             placeholder="Enter name"
+            value={name}
+            onChange={handleNameChange}
           />
         </div>
         <div className="mb-4">
@@ -43,6 +85,8 @@ export default function AddRecordCard({ onCancel }) {
             max="999999999"
             className="mt-1 block w-full border-b border-gray-300 p-2"
             placeholder="Enter amount"
+            value={amount}
+            onChange={handleAmountChange}
           />
         </div>
         <div className="flex justify-between gap-4">

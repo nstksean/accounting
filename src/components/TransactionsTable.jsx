@@ -1,22 +1,10 @@
+import { useTransactions } from "../context/TransactionsContext"
 
-const recordData = [
-  { name: "Groceries", amount: 50.00, date: "2024/07/29" },
-  { name: "Breakfast", amount: 30.00, date: "2024/07/29" },
-  { name: "Coffee", amount: 5.00, date: "2024/07/29" },
-  { name: "Gas", amount: 40.00, date: "" },
-  { name: "Lunch", amount: 15.00, date: "" },
-  { name: "Dinner", amount: 100.00, date: "" },
-  { name: "Groceries", amount: 50.00, date: "2024/07/29" },
-  { name: "Breakfast", amount: 30.00, date: "2024/07/29" },
-  { name: "Coffee", amount: 5.00, date: "2024/07/29" },
-  { name: "Gas", amount: 40.00, date: "" },
-  { name: "Lunch", amount: 15.00, date: "" },
-  { name: "Dinner", amount: 100.00, date: "" },
-];
+export default function TransactionsTable() {
+    const { transactions } = useTransactions();
 
-export default function RecordTable() {
     return (
-        <div className="p-4 flex-1 overflow-y-auto max-h-1/2 bg-white">
+        <div className="p-4 flex-1 bg-white">
           <table className="table-auto w-full">
             <thead>
               <tr className="sticky top-0 bg-white">
@@ -26,7 +14,7 @@ export default function RecordTable() {
               </tr>
             </thead>
             <tbody>
-              {recordData.map((record, index) => (
+              {transactions?.map((record, index) => (
                 <tr key={index}>
                   <td className="py-2 border-t border-[#d0dee7]">
                     <div className="flex flex-col">
