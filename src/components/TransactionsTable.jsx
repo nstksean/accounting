@@ -1,8 +1,17 @@
 import { useTransactions } from "../context/TransactionsContext"
 
+import TransactionRow from "./TransactionRow";
+
 export default function TransactionsTable() {
     const { transactions } = useTransactions();
 
+    if (!transactions || transactions.length === 0) {
+      return (
+        <div className="p-4 flex-1 bg-white">
+          <p className="text-center text-gray-500">No transactions found</p>
+        </div>
+      );
+    }
     return (
         <div className="p-4 flex-1 bg-white">
           <table className="table-auto w-full">
@@ -10,21 +19,12 @@ export default function TransactionsTable() {
               <tr className="sticky top-0 bg-white">
                 <th className="text-left text-[#4e7a97] font-bold py-2">Name</th>
                 <th className="text-left text-[#4e7a97] font-bold py-2">Amount</th>
-                <th className="text-left text-[#4e7a97] font-bold py-2">Date</th>
+                <th className="text-left text-[#4e7a97] font-bold py-2">Action</th>
               </tr>
             </thead>
             <tbody>
-              {transactions?.map((record, index) => (
-                <tr key={index}>
-                  <td className="py-2 border-t border-[#d0dee7]">
-                    <div className="flex flex-col">
-                      <span className="font-bold">{record.name}</span>
-                      <span className="text-xs text-gray-500">{record.date}</span>
-                    </div>
-                  </td>
-                  <td className="py-2 border-t border-[#d0dee7]">${record.amount}</td>
-                  <td className="py-2 border-t border-[#d0dee7]">{record.date}</td>
-                </tr>
+              {transactions.map((record) => (
+                <TransactionRow key={record.id} record={record} />
               ))}
             </tbody>
           </table>
