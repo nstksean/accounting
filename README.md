@@ -5,15 +5,29 @@ A simple accounting application built with React and Vite.
 ## Features
 
 *   Add new records
+*   Delete record
 *   View record list
-*   Filter records
-*   Overview statistics
+*   Filter records by:
+      * Today
+      * This Week
+      * This Month
+
+## Todo
+* Overview component implementation
+* Form validations:
+  * Date input: Set today as default value
+  * Name input: Validate special symbols
+  * Amount input: Add number validation
+* Layout improvements
+* Statistics overview
+* UI/UX enhancements
 
 ## Technologies Used
 
 *   React
 *   Vite
 *   Tailwind CSS
+*   Local Storage for data persistence
 
 ## Getting Started
 
@@ -58,3 +72,11 @@ The built files will be in the `dist` directory.
 npm run lint
 npm run format
 ```
+
+## Contributing
+
+Feel free to submit issues and pull requests!
+
+## License
+
+MIT
